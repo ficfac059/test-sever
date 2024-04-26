@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets';
+import Logo from "../../public/icon/logo-utcc.svg";
+import MeneRight from "../../public/icon/menu-toggle.svg"
+import HeaderLink from "./HeaderLink.astro";
+
+import { SITE_TITLE } from "../consts";
+
+// import DropdownLang from "./DropdownLang.astro"
+import ButtonMain from "./Button/ButtonMain.astro"
+
+import { useTranslations } from "../i18n/utils";
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const homeSlug = `/`;
+const courSection = `/#course`;
+const faqSection = `/#faq`;
+const aboutSection= `/aboutus`;
+const partnerSection = "/#partners"
+const alumniSection = "/#alumni"
+const newsSection= `/#news`;
+
+---
+
+<header>
+  <div id="header" class="w-full fixed top-0 z-20 pb-2 items-center bg-a-yellow-F8AF23">
+    <div class="navbar container lg:mx-auto items-center">
+    <div class="navbar-start">
+      <a href={homeSlug} class="logo">
+      <Image src={Logo} alt="Logo UTCC" />
+      </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <div class="internal-links text-a-black-0B0B0B">
+        <HeaderLink href={aboutSection}>{t("nav.about")}</HeaderLink>
+        <HeaderLink href={courSection}>{t("nav.course")}</HeaderLink>
+        <HeaderLink href={faqSection}>{t("nav.faq")}</HeaderLink>
+        <HeaderLink href={partnerSection}>{t("nav.partner")}</HeaderLink>
+        <HeaderLink href={alumniSection}>{t("nav.alumni")}</HeaderLink>
+        <HeaderLink href={newsSection}>{t("nav.news")}</HeaderLink>
+      </div>
+    </div>
+    <div class="navbar-end ">
+      <span  class="hidden lg:flex">
+        <!-- <DropdownLang language={lang} /> -->
+      </span>
+      <div class="admission-btn hidden lg:flex ml-4">
+        <ButtonMain lang={lang}>{t("button.admission")}</ButtonMain>
+      </div>
+      <div id="menu-right" tabindex="0" role="button" class="btn btn-ghost flex lg:hidden">
+        <Image  src={MeneRight} alt='menu'>
+      </div>
+    </div>
+  </div>
+  </div>
+</header>
+
+<style scoped>
+  header {
+    background: var(--accent-dark);
+    margin: 0;
+  }
+  header > .active {
+    background-color: var(--accent-dark);
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+  }
+  h2 {
+    margin: 0;
+    font-size: 1em;
+  }
+
+  h2 a,
+  h2 a.active {
+    text-decoration: none;
+  }
+
+
+  .nav-menu {
+    width: 100%;
+  }
+  nav {
+    font-size: 1.75rem;
+    align-items: center;
+
+  }
+
+  .navbar {
+    font-size: 1.5rem;
+    padding: 0;
+  }
+  .navbar a{
+    color: var(--black);
+    border-bottom: 3px solid transparent;
+    text-decoration: none;
+    padding: 0 0.5rem;
+
+  }
+  .navbar a.active {
+    text-decoration: none;
+    color: whitesmoke;
+    font-weight: 400 !important;
+    /* border-bottom-color: var(--primary); */
+    /* background: transparent !important; */
+
+  }
+  .navbar a:hover {
+    text-decoration: none;
+    color: white;
+
+  }
+
+
+
+  .admission-btn  {
+    padding: 0.75rem 0;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    #header {
+      display: flex;
+      justify-content: center;
+    }
+    .logo img {
+      max-width: 90%;
+      height: auto;
+    }
+  }
+  @media (max-width: 720px) {
+    #header {
+      display: flex;
+      justify-content: center;
+    }
+    .navbar a{
+      padding: 0 .25rem;
+    }
+    .admission-btn {
+      display: none;
+    }
+    .logo img {
+      max-width: 80%;
+      height: auto;
+      padding-left: .25rem;
+    }
+
+  }
+</style>

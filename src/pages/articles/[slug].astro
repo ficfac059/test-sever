@@ -1,0 +1,165 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MainBanner from "../../components/Banner/MainBanner.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import moment from "moment";
+import Widgets from "../../components/Blogs/widgets.astro";
+import { Icon } from "astro-icon/components";
+
+const { slug } = Astro.params;
+const reqUrl = `https://demo2.utcc.ac.th/wp-json/wp/v2/news?per_page=20&_embed&acf_format=standard`;
+const res = await fetch(`${reqUrl}&slug=${slug}`, { mode: "cors" });
+const [post] = await res.json();
+const imgMain = post.acf.gallery;
+
+// The getStaticPaths() is required for static Astro sites.
+// If using SSR, you will not need this function.
+export async function getStaticPaths() {
+  const data = await fetch(
+    "https://demo2.utcc.ac.th/wp-json/wp/v2/news?per_page=20&_embed&acf_format=standard"
+  );
+  const posts = await data.json();
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post: post },
+  }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const homeSlug = `/`;
+const blogSlug = `/blogs`;
+---
+
+<Layout
+  title={`${post.title.rendered} | ${t("name")} ${t("university")}`}
+  description={`${post.excerpt.rendered}`}
+  lang={lang}
+  isMenu={true}
+>
+  <MainBanner description={t("news.title")} title={post.title.rendered} />
+  <div class="container mx-auto">
+    <div class="text-sm breadcrumbs line-clamp-1 pt-10 px-5">
+      <ul class="text-36">
+        <li><a href={homeSlug}>หน้าหลัก</a></li>
+        <li><a href={blogSlug}>ข่าวและกิจกรรม</a></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <article class="px-5">
+      <div class="flex flex-col desktop:flex-row gap-8 py-16">
+        <div class="content w-full desktop:w-2/3 order-1">
+          <h1 class="text-54 font-bold">{post.title.rendered}</h1>
+          <p class="py-5">
+            Student {post.type} by {post._embedded["author"]["0"].name} —{" "}
+            {moment(post.date).format("DD/MM/YYYY")}
+          </p>
+          <div class="main-image w-full pb-5">
+            <img
+              src={post.acf.cover_image}
+              alt={post.title.rendered}
+              class="w-full mx-auto shadow-md"
+            />
+          </div>
+
+          <span class="text-light"></span>
+          <div class="content-text py-5" set:html={post.acf.description} />
+
+          {
+            imgMain === false || imgMain.length === 1 ? (
+              ""
+            ) : (
+              <>
+                <div class="carousel carousel-center space-x-4 slugGallery">
+                  {imgMain.map((item, index) => (
+                    <div id={"item" + index} class="carousel-item">
+                      <img src={item} alt="image slider" class="" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+                <div class="flex justify-start lg:justify-center w-full py-2 gap-2">
+                  {imgMain.map((xx, index) => (
+                    <a href={"#item" + index} class="slugIndicator">
+                      <img src={xx} alt="indicator image" loading="lazy" />
+                    </a>
+                  ))}
+                </div>
+              </>
+            )
+          }
+        </div>
+        <div
+          class="widgets w-full desktop:w-1/3 order-2 lg:sticky top-24 self-start"
+        >
+          <div class="flex flex-row justify-between items-center pb-5">
+            <h3 class="text-36 font-bold">ข่าวและกิจกรรมอื่นๆ</h3>
+            <a href={blogSlug}>
+              <span
+                class="flex flex-row text-a-gray-696F6F hover:text-a-black-0B0B0B hover:underline cursor-pointer"
+                lang={lang}
+                >{t("button.showMore")}
+                <Icon name="arrow-left" />
+              </span>
+            </a>
+          </div>
+          <Widgets />
+        </div>
+      </div>
+    </article>
+
+    <style scoped>
+      @import "../../styles/global.css";
+      .content-text {
+        font-size: 1.5rem;
+      }
+      .content-text img {
+        display: inline-block !important;
+      }
+
+      .slugGallery {
+        position: relative;
+      }
+
+      .slugGallery .carousel-item {
+        height: 600px;
+      }
+
+      .slugGallery .carousel-item img {
+        width: auto;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .slugIndicator {
+        flex: 1;
+        width: auto;
+        height: 5rem;
+      }
+
+      .slugIndicator img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 1023px) {
+        .slugGallery .carousel-item {
+          height: 400px;
+        }
+        .flex {
+          overflow-y: scroll;
+        }
+        .slugIndicator {
+          height: 3rem;
+          min-width: 3rem;
+        }
+      }
+    </style>
+  </div>
+</Layout>

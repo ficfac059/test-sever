@@ -1,0 +1,65 @@
+---
+import AlumniSwiper from "./AlumniSwiper.vue";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const { class: className, ...props } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+  id="alumni"
+  class="py-24 bg-a-yellow-F8AF23"
+  class:list={[className]}
+  {...props}
+>
+  <div class="px-4 sm:px-16">
+    <div class="container mx-auto">
+      <div class="text-66 font-semibold mb-0">
+        {`${t("home.alumni.title")}`}
+      </div>
+      <div class="text-30">
+        {`${t("home.alumni.description")}`}
+      </div>
+    </div>
+    <div class="">
+      <div class="sm:w-30 pt-0 md:pt-4"></div>
+      <div class="alumni-section pt-16">
+        <AlumniSwiper client:visible />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  .alumni-section {
+    position: relative;
+  }
+  .alumni-section::before,
+  .alumni-section::after {
+    content: "";
+    position: absolute;
+    width: 75px;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+
+  .alumni-section::before {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      rgba(248, 175, 35, 1) 0%,
+      transparent 90%
+    );
+  }
+
+  .alumni-section::after {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      rgba(248, 175, 35, 1) 0%,
+      transparent 90%
+    );
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+// components
+import HeroLayout from "../layouts/HeroLayout.astro";
+import SpecialLayout from "../components/SpecialLayout.astro";
+import Course from "../components/course/index.vue";
+import AboutUs from "../components/AboutUs/AboutUs.astro"
+import Faqs from "../components/Faq/Faqs.astro";
+import PartnerSection from "../components/Partner/Partners.astro";
+import AlumniSection from "../components/Alumni/AlumniSection.astro";
+import Articles from "../components/Articles.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const title = "SCHOOL OF TOURISM AND SERVICES";
+const description = "คณะการท่องเที่ยวและอุตสาหกรรมบริการ";
+const keywords = "คณะการท่องเที่ยวและอุตสาหกรรมบริการม, UTCC, มหาวิทยาลัยหอการค้าไทย";
+---
+
+<Layout title={t("site.title")} description={t("site.description")} lang={lang} keywords={keywords}>
+    <HeroLayout title={title} description={description}/>
+    <SpecialLayout lang={lang}/>
+    <AboutUs lang={lang} title={t("aboutUs.title")} description={t("aboutUs.description")} button={t("aboutUs.button")} />
+    <Course client:load />
+    <Faqs />
+    <PartnerSection />
+    <AlumniSection />
+    <Articles />
+</Layout>

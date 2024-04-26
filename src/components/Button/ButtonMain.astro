@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { getLocalizedPathname,useTranslations } from "../../i18n/utils";
+import { Icon } from "astro-icon/components";
+
+type Props = HTMLAttributes<"a">;
+
+const { isHidden,class: className, ...props } = Astro.props;
+const { pathname } = Astro.url;
+
+const lang = Astro.params?.lang || "th";
+
+const href =  'https://www.utcc.ac.th/admission/'
+
+
+---
+
+<a href={href} target="_blank" >
+  <button class="btn btn-active btn-primary rounded-full font-normal uppercase" class:list={[className]} {...props}>
+     <slot />
+    <Icon  name="arrow-left" class:list={[className, { hidden: isHidden }]} {...props}/>
+  </button>
+</a>
+<style scoped>
+ button {
+  font-size: 1.5rem;
+ }
+ button:hover {
+   color: #fff;
+ }
+
+</style>

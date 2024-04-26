@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_4" data-name="4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 28.17">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #1a237b;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-3 {
+        fill: #bd0034;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="-.13" y=".2" width="50" height="28" rx="5" ry="5"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-1" x="-.13" y=".12" width="50" height="28.16"/>
+    </clipPath>
+  </defs>
+  <g class="cls-6">
+    <g id="UNITED_KINGDOM" data-name="UNITED KINGDOM">
+      <g class="cls-5">
+        <rect class="cls-4" x="-.13" y=".12" width="50" height="28.16"/>
+        <polygon class="cls-3" points="33.35 10.3 49.87 1.37 49.87 .12 48.73 .12 29.89 10.3 33.35 10.3"/>
+        <polygon class="cls-3" points="32.57 18.66 49.87 28.01 49.87 26.14 36.03 18.66 32.57 18.66"/>
+        <polygon class="cls-3" points="-.13 2.26 14.67 10.3 18.13 10.3 -.13 .39 -.13 2.26"/>
+        <polygon class="cls-3" points="17.34 18.66 -.13 28.12 -.13 28.28 3.03 28.28 20.8 18.66 17.34 18.66"/>
+        <polygon class="cls-2" points="46.45 .12 28.94 .12 28.94 9.59 46.45 .12"/>
+        <polygon class="cls-2" points="21.21 .12 3.78 .12 21.21 9.59 21.21 .12"/>
+        <polygon class="cls-2" points="49.87 10.3 49.87 3.84 37.99 10.3 49.87 10.3"/>
+        <polygon class="cls-2" points="49.87 25.05 49.87 18.66 37.99 18.66 49.87 25.05"/>
+        <polygon class="cls-2" points="4.77 28.28 21.21 28.28 21.21 19.38 4.77 28.28"/>
+        <polygon class="cls-2" points="28.94 28.28 45.44 28.28 28.94 19.38 28.94 28.28"/>
+        <polygon class="cls-2" points="-.13 18.66 -.13 25.34 12.16 18.66 -.13 18.66"/>
+        <polygon class="cls-2" points="-.13 10.3 12.16 10.3 -.13 3.61 -.13 10.3"/>
+        <polygon class="cls-3" points="22.76 .12 22.76 11.97 -.13 11.97 -.13 16.99 22.76 16.99 22.76 28.28 27.4 28.28 27.4 16.99 49.87 16.99 49.87 11.97 27.4 11.97 27.4 .12 22.76 .12"/>
+      </g>
+    </g>
+  </g>
+</svg>

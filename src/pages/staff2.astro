@@ -1,0 +1,188 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Layout from "../layouts/Layout.astro";
+
+import MainBanner from "../components/Banner/MainBanner.astro";
+import TopicAboutUs from "../components/AboutUs/TopicAboutUs.astro";
+import WhyUsSection from "../components/WhyUs/WhyUsSection.vue";
+import StaffSectionV2 from "../components/Staff/StaffSectionV2.vue";
+const lang = getLangFromUrl(Astro.url);
+
+const t = useTranslations(lang);
+
+const aboutSlug = `/aboutus`;
+const staffSlug = `/staff`;
+---
+
+<Layout
+  title={`${t("aboutUs.title")} | ${t("name")} ${t("university")}`}
+  description={`${t("aboutUs.description")}`}
+  lang={lang}
+  isMenu={true}
+>
+  <MainBanner title={t("aboutUs.title")} description={t("name")} />
+
+  <div class="pt-20 w-full relative" id="about-staff">
+    <div class="container mx-auto pb-10">
+      <TopicAboutUs
+        title={"บุคลากร"}
+        desc={"คณะการท่องเที่ยวและอุตสาหกรรมบริการ"}
+      >
+        <a href={aboutSlug}>
+          <button
+            class="btn btn-sm btn-outline btn-info rounded-full font-normal uppercase hover:text-white text-30"
+          >
+            ประวัติความเป็นมา</button
+          >
+        </a>
+        <a href={staffSlug}>
+          <button
+            class="btn btn-sm btn-outline btn-info rounded-full font-normal uppercase hover:text-white text-30 btn-active"
+          >
+            บุคลากร</button
+          >
+        </a>
+      </TopicAboutUs>
+
+      <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4">
+          <div class="py-4">
+            <ul
+              class="menu bg-base-200 w-auto lg:w-3/4 rounded-box md:sticky top-24 self-start text-24 py-4"
+            >
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="active btn-active personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="all">ทั้งหมด</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="1">คณะผู้บริหาร</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="2">สาขาการจัดการโรงแรม</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="3">สาขาการจัดการการท่องเที่ยวและนวัตกรรมบริการ</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="4">สาขาการจัดการธุรกิจการบิน</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="5">สาขาการผลิตและการจัดการอีเว้นท์</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="6">สาขาวิชาศิลปะการประกอบอาหารและการจัดการภัตตาคาร</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="9">ผู้ช่วยสอน</a
+                >
+              </li>
+              <li class="mb-3">
+                <a
+                  href="javascript:void(0)"
+                  class="personnel-tabs text-slate-700 hover:text-slate-100 bg-slate-100 hover:bg-slate-200"
+                  id="8">เจ้าหน้าที่ธุรการ</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-span-3">
+            <StaffSectionV2 client:visible />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <WhyUsSection client:visible />
+  </div>
+  <style scoped>
+    @import "../styles/global.css";
+
+    .active {
+      background: linear-gradient(to bottom, #3cb0fd, #3498db);
+      text-decoration: none;
+    }
+
+    .spacer {
+      clear: both;
+      height: 20px;
+    }
+
+    .menu {
+      padding: 0;
+    }
+    .menu li a {
+      color: var(--primary);
+      padding: 8px 12px;
+      align-items: center;
+      border-radius: 22px;
+      /* border: 1px solid var(--blue-light3); */
+      margin: 0 0.25rem;
+    }
+    .menu li a:hover {
+      background-color: #f1f5f9;
+    }
+    .slides {
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      scrollbar-width: none; /* Firefox */
+    }
+    .slides::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    .tab {
+      color: var(--accent-dark);
+      font-size: 2.25rem;
+    }
+    .tabs-lifted > .tab {
+      min-width: 240px;
+      height: 80px;
+    }
+    .tabs-lifted > .tab:is(input:checked) {
+      background-color: var(--accent-dark);
+      border-bottom-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      color: white;
+    }
+    .tab-content {
+      border-color: transparent;
+      border-width: 0;
+    }
+    .tabs-lifted > .tab.tab-active:not(.tab-disabled):not([disabled]),
+    .tabs-lifted > .tab:is(input:checked) {
+      border-width: 0;
+    }
+    .btn:hover,
+    .btn-active {
+      color: #ffffff !important;
+    }
+  </style></Layout
+>

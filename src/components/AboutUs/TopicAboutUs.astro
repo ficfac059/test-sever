@@ -1,0 +1,61 @@
+---
+const { title, desc } = Astro.props;
+---
+
+<div class="topic-aboutus flex justify-between items-start gap-4">
+  <div class="item">
+    <h1 class="text-66 font-bold uppercase leading-none">
+      {title}
+    </h1>
+    <h3 class="text-30">{desc}</h3>
+  </div>
+
+  <div class="item gap-4 item pt-4">
+    <slot />
+  </div>
+</div>
+<style scoped>
+  .btn:hover {
+    color: white;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .topic-aboutus {
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem;
+      align-items: end;
+    }
+    .item:nth-child(2) {
+      order: 1;
+      display: flex;
+    }
+    .item:nth-child(1) {
+      order: 2;
+      width: 100%;
+    }
+    h1 {
+      font-size: 50px;
+    }
+    h3 {
+      font-size: 24px;
+    }
+    button {
+      font-size: 1rem;
+    }
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .topic-aboutus {
+      padding: 0 1rem;
+    }
+    h1 {
+      font-size: 50px;
+    }
+    h3 {
+      font-size: 24px;
+    }
+    button {
+      font-size: 1rem;
+    }
+  }
+</style>

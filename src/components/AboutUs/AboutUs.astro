@@ -1,0 +1,42 @@
+---
+import ButtonMain from "../Button/ButtonMain.astro";
+import HeaderLink from "../HeaderLink.astro";
+
+const { title, description, lang, button } = Astro.props;
+const aboutSlug = `/aboutus`;
+---
+
+<div id="aboutus" class="about-us py-20">
+  <div class="container mx-auto grid grid-cols-3 gap-4 py-28">
+    <div class="col-span-3 desktop:col-span-1">
+      <h1 class="text-66 pl-8 lg:p-0">{title}</h1>
+    </div>
+    <div class="col-span-3 desktop:col-span-2 p-10">
+      <div class="text-24 mb-8">
+        คณะการท่องเที่ยวและอุตสาหกรรมบริการ มหาวิทยาลัยหอการค้าไทย
+        จัดการเรียนการสอนในหลักสูตรที่ทันสมัย
+        ครอบคลุมทุกศาสตร์ในอุตสาหกรรมการท่องเที่ยวและการบริการ ทั้งการท่องเที่ยว
+        การบิน การโรงแรม การประกอบอาหาร กีฬา นันทนาการ อีเว้นท์
+        และเอนเตอร์เทนเมนท์ เพียบพร้อมด้วยห้องปฏิบัติการที่ทันสมัย เช่น UTCC
+        Event Lab, UTCC Airlines, UTCC Travel & Event, The Chamber Hotel, The
+        Chamber’s Kitchen, และ The Chamber Cuisine
+        ตลอดจนมีเครือข่ายความร่วมมือกับองค์ชั้นนำทั้งในและต่างประเทศ
+        เพื่อพัฒนาผู้เรียนสู่การเป็นนักบริหารและผู้ประกอบการธุรกิจในอุตสาหกรรมการท่องเที่ยวและการบริการแบบมืออาชีพ    
+      </div>
+
+      <a href={aboutSlug}>
+        <button
+          class="btn btn-active btn-primary rounded-full font-normal uppercase text-24"
+        >
+          {button}
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  .about-us {
+    background-color: #ffd179;
+  }
+</style>

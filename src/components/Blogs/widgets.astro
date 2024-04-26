@@ -1,0 +1,72 @@
+---
+import moment from "moment";
+
+const { slug } = Astro.params;
+
+const reqUrl = `https://demo2.utcc.ac.th/wp-json/wp/v2/news?per_page=15&_embed&acf_format=standard`;
+
+const getData = async () => {
+  const response = await fetch(reqUrl, { mode: "cors" });
+  const data = await response.json();
+  return data;
+};
+const workingSlug = slug;
+
+const filterPosts = async (workingSlug) => {
+  const data = await getData();
+  const filteredPosts = data.filter((post) => post.slug !== workingSlug);
+  return filteredPosts;
+};
+const filteredPosts = await filterPosts(workingSlug);
+filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+const widgetPost = filteredPosts.slice(0, 6);
+---
+
+<div>
+  <div class="widget-group flex flex-cols-reverse">
+    <div id="post-titles"></div>
+    <div class="widget-list">
+      {
+        widgetPost.map((item) => (
+          <a href={`/articles/${item.slug}/`}>
+            <div class="widget-item cursor-pointer border-b-2 border-gray-100 hover:bg-gray-100 grid grid-cols-3 tablet:grid-cols-4 gap-4 p-2.5 desktop:p-4 items-center">
+              <div class="widget-content text-a-gray-696F6F hover:text-a-black-0B0B0B col-span-2 tablet:col-span-3">
+                <div class="flex gap-2 items-center">
+                  <h3 class="rounded-full text-gray-500 ">ข่าวสาร •</h3>
+                  <div class="flex flex-col gap-2">
+                    <h3 class="text-gray-400">
+                      {moment(item.date).format("DD/MM/YYYY")}
+                    </h3>
+                  </div>
+                </div>
+                <h5 class="text-24 text-2-line">{item.title.rendered}</h5>
+              </div>
+              <div class="widget-image mx-auto">
+                <img
+                  src={item.acf.cover_image}
+                  alt={item.title.rendered}
+                  class="object-cover object-top hover:scale-110 duration-700 rounded-md shadow-md"
+                />
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  
+  .widget-image {
+    position: relative;
+    width: 96px;
+    height: 96px;
+  }
+  .widget-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+</style>

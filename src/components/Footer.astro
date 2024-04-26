@@ -1,0 +1,335 @@
+---
+import Image from "astro/components/Image.astro";
+import Logo from "../../public/icon/logo-utcc.svg";
+import Facebook from "../../public/icon/sc-facebook.svg";
+import Instagram from "../../public/icon/sc-instagram.svg";
+import Line from "../../public/icon/sc-line.svg";
+import Youtube from "../../public/icon/sc-youtube.svg";
+import X from "../../public/icon/sc-x-twitter.svg";
+import Tiktok from "../../public/icon/sc-tiktok.svg";
+
+import { Icon } from "astro-icon/components";
+
+import HeaderLink from "./HeaderLink.astro";
+import ButtonMain from "./Button/ButtonMain.astro";
+const today = new Date();
+
+import { useTranslations } from "../i18n/utils";
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const homeSlug = `/`;
+const courSection = `/#course`;
+const faqSection = `/#faq`;
+const aboutSection= `/aboutus`;
+const partnerSection = "/#partners"
+const alumniSection = "/#alumni"
+const newsSection= `/#news`;
+---
+
+<footer>
+  <div class="footer-body-top px-4">
+    <div class="container mx-auto">
+      <div class="content-footer grid grid-cols-3 gap-4">
+        <div class="item">
+          <h6>{t("footer.webschool")}</h6>
+          <div>
+            <div class="pb-14">
+              <ul>
+                <li><a href="https://ubs.utcc.ac.th/" target="_blank">{t("footer.school.ba")}</a></li>
+                <li><a href="https://accountancy.utcc.ac.th/" target="_blank">{t("footer.school.ac")}</a></li>
+                <li><a href="https://economics.utcc.ac.th/" target="_blank">{t("footer.school.ec")}</a></li>
+                <li><a href="https://humanities.utcc.ac.th/" target="_blank">{t("footer.school.hm")}</a></li>
+                <li><a href="https://science.utcc.ac.th/" target="_blank">{t("footer.school.st")}</a></li>
+                <li><a href="https://commarts.utcc.ac.th/" target="_blank">{t("footer.school.ca")}</a></li>
+                <li><a href="https://eng.utcc.ac.th/" target="_blank">{t("footer.school.en")}</a></li>
+                <li><a href="https://tourism.utcc.ac.th/" target="_blank">{t("footer.school.ts")}</a></li>
+                <li><a href="https://ece.utcc.ac.th/" target="_blank">{t("footer.school.ece")}</a></li>
+                <li><a href="https://digitalart.utcc.ac.th/" target="_blank">{t("footer.school.dad")}</a></li>
+                <li><a href="https://www.utcconline.com/" target="_blank">{t("footer.school.es")}</a></li>
+              </ul>
+              <ul>
+                <li><a href="https://ce.utcc.ac.th/" target="_blank">{t("footer.school.ce")}</a></li>
+                <li><a href="https://cce.utcc.ac.th/" target="_blank">{t("footer.school.cce")}</a></li>
+                <li><a href="https://ism.utcc.ac.th/" target="_blank">{t("footer.school.ism")}</a></li>
+                <li><a href="https://tcism.utcc.ac.th/" target="_blank">{t("footer.school.tcism")}</a></li>
+                <li><a href="https://gs.utcc.ac.th/" target="_blank">{t("footer.school.gs")}</a></li>
+                <li><a href="https://harbour.space/" target="_blank">{t("footer.school.harbour")}</a></li>
+                <li><a href="https://satit.utcc.ac.th/" target="_blank">สาธิตมหาวิทยาลัยหอการค้าไทย</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <h6>มหาวิทยาลัย</h6>
+          <ul>
+            <li><a href="https://www.utcc.ac.th/" target="_blank">ข่าวสาร</a></li>
+            <li><a href="https://www.thaichamber.org/" target="_blank">หอการค้าไทย</a></li>
+            <li><a href="https://www.utcc.ac.th/history/" target="_blank">ประวัติมหาวิทยาลัย</a></li>
+            <li><a href="https://www.utcc.ac.th/vision/" target="_blank">ปรัชญา วิสัยทัศน์ และพันธกิจ</a></li>
+            <li><a href="https://www.utcc.ac.th/council/" target="_blank">กรรมการสภาฯ</a></li>
+            <li><a href="https://www.utcc.ac.th/board/" target="_blank">ผู้บริหาร</a></li>
+            <li><a href="https://honorary-doctorate-club.utcc.ac.th/" target="_blank">สโมสรดุษฎีบัณฑิตกิตติมศักดิ์</a></li>
+            <li><a href="https://www.utcc.ac.th/alumnii/" target="_blank">ศิษย์เก่า</a></li>
+            <li><a href="https://www.utcc.ac.th/students/" target="_blank">นักศึกษาปัจจุบัน</a></li>
+            <li><a href="https://www.utcc.ac.th/undergraduate-info/#scholarship" target="_blank">ทุนการศึกษา</a></li>
+            <li><a href="https://dorm.utcc.ac.th/site/index.html" target="_blank">หอพัก</a></li>
+            <li><a href="https://www.utcc.ac.th/partnership/" target="_blank">UTCC Partnership</a></li>
+            <li><a href="https://www.utcc.ac.th/appledistinguishschool/" target="_blank">Apple Distinguished School</a></li>
+            <li><a href="https://etouch.co.th/" target="_blank">eTouch</a></li>
+            <li><a href="https://www.utcc.ac.th/tcc-connect/" target="_blank">TCC Connect</a></li>
+         
+          </ul>
+        </div>
+        <div class="item text-left pb-8 ">
+          <h6>{t("contactUs.title")}</h6>
+          <div class="contect-info">
+            <ul>
+              <li>{t("name")}</li>
+              <li>{t("university")}</li>
+              <li class="mb-8">{t("contactUs.address")}</li>
+              <li>{t("contactUs.phone")}</li>
+              <li class="flex items-center mb-2">
+                <Icon name="phone" class="mr-2 h-5" /><a href="tel:+6626976121">02-697-6121</a>, &nbsp;<a href="tel:+66953675514">095-367-5514</a>
+              </li>
+              <li>{t("contactUs.serviceTime")}</li>
+              <li class="flex items-center">
+                {t("contactUs.date")}
+                <Icon name="clock" class="mx-2" />{t("contactUs.time")}
+              </li>
+            </ul>
+          </div>
+          <div class="social-media-groud flex items-center my-6 gap-4">
+            <a href="https://www.facebook.com/TSUTCC/" target="_blank"><Image src={Facebook} alt="Icon Facebook" /></a>
+            <a href="https://www.instagram.com/utcc_cuteboycutegirl" target="_blank"><Image src={Instagram} alt="Icon Instagram" /></a>
+            <a href="https://line.me/R/ti/p/@utcc" target="_blank"><Image src={Line} alt="Icon Line" /></a>
+            <a href="https://www.youtube.com/user/utccsmartl" target="_blank"><Image src={Youtube} alt="Icon Youtube" /></a>
+            <a href="https://twitter.com/utccsmart" target="_blank"><Image src={X} alt="Icon X" /></a>
+            <a href="https://www.tiktok.com/@dekutcc" target="_blank"><Image src={Tiktok} alt="Icon Tiktok" /></a>
+          </div>
+          <br class="is-desktop" />
+          <ButtonMain lang={lang}>{t("button.admission")}</ButtonMain>
+        </div>
+      </div>
+      <div class="nav-logo flex justify-between items-start">
+        <div class="item">
+          <HeaderLink href={homeSlug}>
+          <Image src={Logo} alt="Logo UTCC" />
+          </HeaderLink>
+          <div class="text-24 text-left mt-4 is-desktop text-1-line">
+            {t("name")}
+          </div>
+        </div>
+        <div class="item">
+          <div class="internal-links flex justify-end gap-8">
+            <HeaderLink href={aboutSection}>{t("nav.about")}</HeaderLink>
+            <HeaderLink href={courSection}>{t("nav.course")}</HeaderLink>
+            <HeaderLink href={faqSection}>{t("nav.faq")}</HeaderLink>
+            <HeaderLink href={partnerSection}>{t("nav.partner")}</HeaderLink>
+            <HeaderLink href={alumniSection}>{t("nav.alumni")}</HeaderLink>
+            <HeaderLink href={newsSection}>{t("nav.news")}</HeaderLink>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<div class="footer-body-bottom">
+  <div class="detail container mx-auto flex justify-between items-center">
+    <div>
+      Copyright &copy; {today.getFullYear()}
+      <br class="block sm:hidden" /> The University of the Thai Chamber of Commerce.
+      <br class="block sm:hidden" /> All rights reserved.
+    </div>
+    <div class="text-policy">
+      <a href="https://www.utcc.ac.th/privacy-policy/" target="_blank"
+        >{t("footer.policy")}</a
+      >
+    </div>
+  </div>
+</div>
+
+<style scoped>
+  @import "../styles/global.css";
+  footer {
+    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    text-align: center;
+    font-size: 24px;
+  }
+  footer ul li {
+    text-align: left;
+    line-height: none;
+    color: var(--black);
+  }
+  footer ul li a {
+    color: var(--black);
+  }
+  .internal-links a {
+    color: var(--black);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 30px */
+    gap: 2rem;
+  }
+  .content-footer {
+    padding-top: 100px;
+  }
+  .footer-body-top {
+    color: var(--black);
+    background-color: var(--accent-dark);
+  }
+  .contect-info {
+    line-height: normal;
+    text-align: left;
+  }
+  .footer-body-top h6 {
+    font-size: 36px;
+    font-weight: 500;
+    text-align: left;
+  }
+  .footer-body-top .nav-logo {
+    border-top-width: 1px;
+    border-top-color: var(--black);
+    padding: 2rem 0;
+  }
+  .footer-body-bottom {
+    background-color: var(--accent);
+    padding: 39px 0;
+    font-size: 1.25rem;
+    color: var(--black);
+  }
+  .footer-body-bottom a {
+    color: var(--black);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+  }
+  .social-links a {
+    text-decoration: none;
+    color: rgb(var(--gray));
+  }
+  .social-links a:hover {
+    color: rgb(var(--gray-dark));
+  }
+
+  @media only screen and (max-width: 767px) {
+    .pb-14 {
+      padding: 0;
+    }
+    .footer-body-top {
+      padding: 2rem 1rem;
+      font-size: 20px;
+    }
+    .footer-body-top h6 {
+      font-size: 30px;
+    }
+    .content-footer {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0 !important;
+    }
+
+    .nav-logo {
+      display: none;
+    }
+    .footer-body-bottom {
+      font-size: 1rem;
+      padding-bottom: 10rem;
+    }
+    .footer-body-bottom .detail {
+      flex-direction: column;
+      padding: 0 4rem;
+      opacity: 0.7;
+    }
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .is-desktop {
+      display: none;
+    }
+    .footer-body-top {
+      /* padding: 0 1rem; */
+      font-size: 24px;
+    }
+    .footer-body-top h6 {
+      font-size: 30px;
+    }
+    .footer-body-top .nav-logo {
+      padding: 1rem 0;
+    }
+    .content-footer {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .item:nth-child(1) {
+      grid-row: span 2 / span 2;
+    }
+    .item:nth-child(3) {
+      padding-bottom: 0 !important;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+    }
+    div.nav-logo.items-center > div:nth-child(1) {
+      justify-items: center;
+      text-align: center;
+      display: contents;
+      margin-bottom: 1rem;
+    }
+    .internal-links {
+      padding: 1rem 0;
+    }
+    .content-footer {
+      padding: 2rem 0 1rem 0;
+    }
+    .footer-body-bottom {
+      padding-bottom: 12rem;
+    }
+    .footer-body-bottom .detail {
+      flex-direction: column;
+      padding: 0 2rem;
+      opacity: 0.7;
+    }
+  }
+
+  /* Landscape */
+  @media only screen and (min-width: 1366px) and (orientation: landscape) {
+    .nav-logo {
+      background-color: transparent;
+    }
+    .internal-links {
+      padding: 1rem 0;
+    }
+  }
+  /*Portrait*/
+  @media only screen and (min-width: 1024px) and (orientation: portrait) {
+    .is-desktop {
+      display: none;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+    }
+    .internal-links {
+      justify-content: center;
+    }
+    .internal-links {
+      padding: 1rem 0 0 0;
+    }
+    .footer-body-bottom {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      opacity: 0.7;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .footer-body-top {
+      padding: 0 1rem;
+    }
+  }
+</style>
